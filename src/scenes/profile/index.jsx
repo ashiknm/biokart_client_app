@@ -6,7 +6,6 @@ import { Box} from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { mockProjects } from '../../data/mockdata';
 import { Link } from 'react-router-dom';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
@@ -71,7 +70,7 @@ const Profile = () => {
         isMounted = false;
         // controller.abort();
     }
-}, []);
+}, [axiosPrivate, location, navigate]);
 
 
 
@@ -208,16 +207,15 @@ const Profile = () => {
   //   },
   // ];
 
-  const filteredRows = mockProjects.filter((row) => row.userid === 1);
 
   return (
     <div className='h-screen w-full flex flex-col' style={{'width' : '100%', 'height' : '100%'}}>
-      <div className='border m-auto ' style={{'height' : '35%', 'width' : '90%', borderRadius : '15px'}}>
-        <div className='border bg-slate-400 flex align-items-center p-3' style={{'height' : '20%', borderTopLeftRadius : '15px', borderTopRightRadius : '15px'}}>
+      <div className=' m-auto ' style={{'height' : '35%', 'width' : '90%'}}>
+        <div className=' bg-slate-400 flex align-items-center p-3' style={{'height' : '20%', borderTopLeftRadius : '15px', borderTopRightRadius : '15px'}}>
           <h1 className='text-white font-semibold'>UID: {userdata.user_id}</h1>
           
         </div>
-        <div className=' flex' style={{'height' : '80%', backgroundColor: colors.primary[400]}}>
+        <div className=' flex' style={{'height' : '80%',  borderBottomLeftRadius : '15px', borderBottomRightRadius : "15px", backgroundColor: colors.primary[400]}}>
             <div className=' border-r flex align-items-center' style={{'width' : '70%'}}>
                 <Box className=" flex flex-wrap" style = {{width: "100%"}}>
                   {/* ROW 1 */}

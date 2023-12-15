@@ -1,5 +1,4 @@
 import React from "react";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import WavingHandIcon from "@mui/icons-material/WavingHand";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
@@ -70,7 +69,7 @@ function Help() {
         // controller.abort();
     }
 
-  },[]);
+  },[axiosPrivate, location, navigate, userId]);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -104,63 +103,37 @@ function Help() {
 
 
 
-  const metagenomeAnalysisFAQ = [
-    {
-      question:
-        "What file formats are supported for uploading project samples for metagenome analysis?",
-      answer:
-        "We support commonly used file formats such as FASTQ and FASTA for uploading metagenomic project samples.",
-    },
-    {
-      question:
-        "Can I analyze multiple samples in a single project upload, or do I need to upload each sample individually?",
-      answer:
-        "Yes, you can batch upload multiple samples within a single project. Our platform is designed to handle and analyze multiple samples efficiently.",
-    },
-    {
-      question:
-        "How long does it typically take to receive results after uploading metagenomic samples for analysis?",
-      answer:
-        "The turnaround time for analysis results varies, but you can expect to receive them within [specified time frame]. Our goal is to provide timely insights into your metagenomic data.",
-    },
-    {
-      question:
-        "What type of analysis tools and algorithms are employed in the metagenome analysis pipeline?",
-      answer:
-        "We use state-of-the-art analysis tools and algorithms in our metagenome analysis pipeline, ensuring accurate and comprehensive insights from your uploaded samples.",
-    },
-    {
-      question:
-        "Are there any specific preprocessing steps or quality control measures required before uploading metagenomic samples for analysis?",
-      answer:
-        "We recommend performing basic preprocessing steps, such as quality control and filtering, before uploading your metagenomic samples. This ensures that the analysis is based on high-quality data, leading to more meaningful results.",
-    },
-  ];
 
   return (
     <div
       className="h-screen w-full flex"
-      style={{ width: "100%", height: "100%" }}
+      style={{ width: "100%", height: "100%",  overflow : "auto" }}
     >
       <div className="ps-5" style={{ width: "60%", height: "100%" }}>
-        <h1 className="h4 mt-3 ">Got any queries?</h1>
-        <p className="mt-1 ">Contact us</p>
-        <hr style={{ width: "50%" }} />
-        <h1 className="h5 mt-4 ">Corporate office:</h1>
-        <div className="ps-3">
-        <p style={{ width: "60%", fontSize : '14px' }}>
-          BioKart Lab, 1st Floor, 401-4AB Cross, 1st Main, Kasturi Nagar, East
-          of NGEF, Bengaluru – 560043, Karnataka, India.
-        </p>
-        <p className="mt-3" style={{fontSize : '14px' }}>Ph. No. +91 9008491839</p>
-        <p style={{fontSize : '14px' }}>email id. vikram@biokart.com</p>
+        <div  style = {{height : "10%"}}>
+          <h1 className="h4 mt-3 ">Got any queries?</h1>
+          <p className="mt-1 ">Contact us</p>
+          <hr style={{ width: "50%" }} />
+        </div>
+        <div  style = {{height : "20%"}}>
+          <h1 className="h5 mt-4 "  >Corporate office:</h1>
+          <div className="ps-3">
+          <p style={{ width: "60%", fontSize : '14px' }}>
+            BioKart Lab, 1st Floor, 401-4AB Cross, 1st Main, Kasturi Nagar, East
+            of NGEF, Bengaluru – 560043, Karnataka, India.
+          </p>
+          <p className="mt-3" style={{fontSize : '14px' }}>Ph. No. +91 9008491839</p>
+          <p style={{fontSize : '14px' }}>email id. vikram@biokart.com</p>
+          </div>
         </div>
        
-        <h1 className="h5 mt-4 " >Freequently Asked Questios</h1>
+       
+       
         <div
-          className=" flex flex-col"
-          style={{ width: "90%", height: "350px", overflow : "auto" }}
+          className=" flex flex-col mb-2"
+          style={{ width: "90%", height: "60%" }}
         >
+           <h1 className="h5  mb-4 " >Freequently Asked Questios</h1>
           {/* {metagenomeAnalysisFAQ.map((item, index) => (
             <div
               className="flex border-bottom py-2 px-3 align-items-center"
@@ -188,7 +161,7 @@ function Help() {
           ))} */}
 
           {faq.map((item, index) => (
-            <Accordion key = {index}>
+            <Accordion className="mb-3" key = {index}>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
@@ -229,15 +202,17 @@ function Help() {
               placeholder="Subject"
               value={subject}
               onChange={(e)=>setSubject(e.target.value)}
-              style={{ width: "80%", height: "40px", backgroundColor: (theme.palette.mode === "dark") ? "white" : '#fafbfc' }}
+              style={{ width: "80%", height: "40px", backgroundColor: (theme.palette.mode === "dark") ? "white" : '#fffff' }}
             />
-            <input
+            <textarea
               className="rounded ps-4 mt-4"
               type="text"
               placeholder="Message"
               value={message}
+              rows={4}  // You can adjust the number of rows as needed
+              cols={65} // You can adjust the number of columns as needed
               onChange={(e)=>setMessage(e.target.value)}
-              style={{ width: "80%", height: "100px", backgroundColor: (theme.palette.mode === "dark") ? "white" : '#fafbfc' }}
+              style={{backgroundColor: (theme.palette.mode === "dark") ? "white" : '#fffff' }}
             />
             <input
               className="rounded ps-4 mt-4"

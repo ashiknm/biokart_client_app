@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
-import { Box, IconButton, Typography, useTheme } from "@mui/material";
+import { Sidebar, Menu } from "react-pro-sidebar";
+import { Box,  Typography, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
 
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
@@ -12,7 +12,7 @@ import ContactSupportIcon from "@mui/icons-material/ContactSupport";
 import Modal from "@mui/material/Modal";
 // import {  Typography } from "@mui/material";
 
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 
