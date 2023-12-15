@@ -18,12 +18,14 @@ import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { isPossiblePhoneNumber } from "react-phone-number-input";
 
+import { useTheme } from "@mui/material";
+import { tokens } from ".././theme";
+
 import { countries } from "../data/mockdata";
 
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9_ -]{3,23}$/;
 const Email_regex = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/;
-const approved_mail =
-  /^[a-zA-Z0-9+_.-]+@(?:[a-zA-Z0-9-]+\.)+(edu\.in|ac\.in|org|edu)$/;
+const approved_mail = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+@(edu\.in)$/; 
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
 const REGISTER_URL = "/register";
@@ -43,6 +45,8 @@ const style = {
 };
 
 function Registerpage() {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
   const navigate = useNavigate();
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -239,7 +243,7 @@ function Registerpage() {
         <h2 className="text-1xl font-bold text-center  mb-1">
           REGISTRATION FORM
         </h2>
-        <div className="max-w-[700px] md:w-full mx-auto bg-white p-4 ">
+        <div className="max-w-[700px] md:w-full mx-auto  p-4 " style = {{backgroundColor: colors.primary[400]}}>
           <p ref = {errorRef} aria-live="assertive" className={errorMsg ? "p-2 text-sm text-danger": "hidden"}>{errorMsg}</p>
           <div className="flex flex-wrap -mx-2">
             <div className="w-full md:w-1/2 px-2 mb-4">
@@ -357,12 +361,13 @@ function Registerpage() {
             <div className="w-full flex md:w-1/2 px-2 mb-4">
               <div
                 className="border flex align-items-center p-2 rounded w-full"
-                style={{ borderColor: "black" }}
+                style={{ borderColor: "black", backgroundColor: colors.primary[400] }}
               >
                 <PhoneInput
+                  defaultCountry="IN"
                   className="text-dark"
                   placeholder="Enter phone number"
-                  style={{ border: "none", color: "black" }}
+                  style={{ border: "none", backgroundColor: colors.primary[400] }}
                   value={phonenumber}
                   onChange={setPhonenumber}
                   error={
@@ -526,7 +531,7 @@ function Registerpage() {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
-          <Box sx={style}>
+          <Box className = "bg-white" sx={style}>
             <div
               className="editModal"
               style={{
@@ -540,13 +545,13 @@ function Registerpage() {
             >
               <CloseIcon onClick={() => setModalOpen(false)} />
             </div>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
+            <Typography className="text-dark" id="modal-modal-title" variant="h4" component="h2">
               Registration Successful !!
             </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            <Typography className="text-dark" varient = "h5" id="modal-modal-description" sx={{ mt: 2 }}>
               <h1>thank you for sharing your info to Biokart India </h1>
               <div
-                className="m-2 p-2"
+                className="mt-4 my-1 p-2"
                 style={{
                   backgroundColor: "#FFE9D9",
                   borderLeft: "5px solid #FA703F",
@@ -554,8 +559,8 @@ function Registerpage() {
                   height: "auto",
                 }}
               >
-                <h1 className="ps-5 h5">Message sent </h1>
-                <h1>
+                <h1 className="ps-2 h5 text-dark">Message sent </h1>
+                <h1 className="text-dark">
                   Confirmation email is sent to {email} please confirm to access
                   your account.
                 </h1>

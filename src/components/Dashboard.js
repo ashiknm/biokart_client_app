@@ -1126,10 +1126,10 @@ const getFilteredHistory = () => {
               className=" flex justify-center align-items-center "
               style={{ height: "100px", width: "100%" }}
             >
-              <div className="flex justify-content-between w-full">
+              <div className="flex justify-content-between w-full" >
                 <div
-                  className=" input-group border rounded flex justify-content-between align-items-center  "
-                  style={{ height: "60px", width: "60%" }}
+                  className=" input-group rounded flex justify-content-between align-items-center  "
+                  style={{ height: "60px", width: "60%", backgroundColor: colors.primary[400] }}
                 >
                   <input
                     type="text"
@@ -1211,10 +1211,10 @@ const getFilteredHistory = () => {
             style={{ height: "auto", width: "95%", margin: "auto" }}
           >
             <div
-              className=" sm:w-full"
-              style={{ width: "800px", height: "auto" }}
+              className=" md:w-full"
+              style={{ width: "67.5%", height: "auto" }}
             >
-              <div className="p-2" style = {{backgroundColor : colors.primary[400]}}>
+              <div className="p-2 " style = {{backgroundColor : colors.primary[400]}}>
                 {/* <h1 className="text-center m-2 text-xl font-semibold">
                   History
                 </h1> */}
@@ -1309,7 +1309,7 @@ const getFilteredHistory = () => {
                 
               </div>
             </div>
-            <div className="hidden md:block" style={{ width: "300px", backgroundColor: colors.primary[400] }}>
+            <div className="hidden md:block" style={{ width: "30%", backgroundColor: colors.primary[400] }}>
               <h1 className="text-center m-2 text-xl1 font-semibold">
                 Procedure
               </h1>

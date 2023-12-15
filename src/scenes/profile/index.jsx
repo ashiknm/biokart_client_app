@@ -217,16 +217,15 @@ const Profile = () => {
           <h1 className='text-white font-semibold'>UID: {userdata.user_id}</h1>
           
         </div>
-        <div className=' flex' style={{'height' : '80%'}}>
+        <div className=' flex' style={{'height' : '80%', backgroundColor: colors.primary[400]}}>
             <div className=' border-r flex align-items-center' style={{'width' : '70%'}}>
-                <Box className=" flex flex-wrap">
+                <Box className=" flex flex-wrap" style = {{width: "100%"}}>
                   {/* ROW 1 */}
                   <Box
+                    style={{ width: "25%" }}
                     display="flex"
                     alignItems="center"
                     justifyContent="center"
-
-                   
                   >
                     <Statbox
                       title={userdata.credits_remaining}
@@ -241,6 +240,7 @@ const Profile = () => {
                     />
                   </Box>
                   <Box
+                    style={{ width: "25%" }}
                     display="flex"
                     alignItems="center"
                     justifyContent="center"
@@ -256,6 +256,7 @@ const Profile = () => {
                     />
                   </Box>
                   <Box
+                    style={{ width: "25%" }}
                     display="flex"
                     alignItems="center"
                     justifyContent="center"
@@ -271,6 +272,7 @@ const Profile = () => {
                     />
                   </Box>
                   <Box
+                    style={{ width: "25%" }}
                     display="flex"
                     alignItems="center"
                     justifyContent="center"

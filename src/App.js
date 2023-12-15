@@ -20,6 +20,7 @@ import { ColorModeContext, useMode } from "./theme";
 import { Routes, Route } from "react-router-dom";
 
 import { disableReactDevTools } from '@fvilers/disable-react-devtools';
+import Unapproved from "./components/Unapproved";
 
 if (process.env.NODE_ENV === 'production') {
   disableReactDevTools();
@@ -42,11 +43,13 @@ function App() {
 
         <Route path="/register" element={<Registerpage />} />
         <Route path="/login" element={<Loginpage />} />
+        <Route path="/unapproved" element={<Unapproved />} />
 
         <Route element = {<PersistLogin />}>
         <Route  element={<RequireAuth />} > 
         <Route path="/" element={<Dashboard />} />
           <Route path="/dashboard" element={<Dashboard />} />
+         
           <Route path="/settings" element={<Settings />}>
             <Route path="profile" element={<Profile />} />
             <Route path="profileSettings" element={<ProfileSettings />} />
