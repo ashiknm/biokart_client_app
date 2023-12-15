@@ -202,7 +202,7 @@ function Help() {
               placeholder="Subject"
               value={subject}
               onChange={(e)=>setSubject(e.target.value)}
-              style={{ width: "80%", height: "40px", backgroundColor: (theme.palette.mode === "dark") ? "white" : '#fffff' }}
+              style={{ width: "80%", color:(theme.palette.mode === "dark") ? "black" : '#fffff',  height: "40px", backgroundColor: (theme.palette.mode === "dark") ? "white" : '#fffff' }}
             />
             <textarea
               className="rounded ps-4 mt-4"
@@ -210,9 +210,9 @@ function Help() {
               placeholder="Message"
               value={message}
               rows={4}  // You can adjust the number of rows as needed
-              cols={65} // You can adjust the number of columns as needed
+              // cols={auto} // You can adjust the number of columns as needed
               onChange={(e)=>setMessage(e.target.value)}
-              style={{backgroundColor: (theme.palette.mode === "dark") ? "white" : '#fffff' }}
+              style={{ width: "80%", color:(theme.palette.mode === "dark") ? "black" : '#fffff',backgroundColor: (theme.palette.mode === "dark") ? "white" : '#fffff' }}
             />
             <input
               className="rounded ps-4 mt-4"

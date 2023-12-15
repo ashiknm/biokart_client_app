@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import ProgressCircle from "./ProgressCircle";
 
 const Statbox = ({ title, subtitle, icon, progress, increase }) => {
@@ -19,8 +19,9 @@ const Statbox = ({ title, subtitle, icon, progress, increase }) => {
         <Box className = 'flex justify-center align-items-center' style = {{'height': '120px', 'width' : '120px', 'position' : 'relative'}}>
           <ProgressCircle progress={progress} />
           <div style = {{'position' : 'absolute'}}>
-          <h2 className="text-xs text-center">{subtitle}</h2>
-            <h2 className="text-center">{title}</h2>
+        
+          <Typography variant="h4" style={{fontWeight: "bold"}}   className="text-center">{title}</Typography >
+          <Typography variant="h5"   className="text-xs text-center">{subtitle}</Typography >
           </div>
         </Box>
       </Box>
