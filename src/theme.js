@@ -212,7 +212,7 @@ export const ColorModeContext = createContext({
 
 export const useMode = () => {
   const savedMode = localStorage.getItem('themeMode');
-  const [mode, setMode] = useState(savedMode || 'dark');
+  const [mode, setMode] = useState(savedMode || 'light');
 
   const colorMode = useMemo(
     () => ({

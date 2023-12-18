@@ -1,8 +1,12 @@
 // Filename: ToggleSwitch.js 
 import React from "react"; 
+import { Box, useTheme } from "@mui/material";
+import { tokens } from "../theme";
 import '../assets/ToggleSwitch.css'
 
 const ToggleSwitch = ({ label }) => { 
+const theme = useTheme();
+const colors = tokens(theme.palette.mode);
 return ( 
 	<div > 
 	<div className="toggle-switch" > 

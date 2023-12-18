@@ -12,20 +12,27 @@ import ContactSupportIcon from "@mui/icons-material/ContactSupport";
 import Modal from "@mui/material/Modal";
 // import {  Typography } from "@mui/material";
 
-import {  useNavigate } from "react-router-dom";
+
 import { useEffect } from "react";
+
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
+
+import { useLocation, useNavigate } from 'react-router-dom';
 
 
 const Item = ({ title, to, icon, selected, setSelected, userid }) => {
 
-  const navigate = useNavigate();
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const navigate = useNavigate();
+
 
   const handleMenuItemClick = () => {
     setSelected(title);
     navigate(to);
   };
+
+
 
 
   return (
@@ -66,15 +73,37 @@ const style = {
 
 
 
-const Sidebardiv = ({userid}) => {
+const Sidebardiv = ({userid, creditsrequested}) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [selected, setSelected] = useState("Dashboard");
   const [modalOpen, setModalOpen] = useState(false);
+  const [modal2Open, setModal2Open] = useState(false);
 
-  useEffect(()=>{
-    console.log("userId :",userid)
-  },[userid]);
+  const axiosPrivate = useAxiosPrivate();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const buyCredits = async () =>{
+    const response = await axiosPrivate.put(
+      `/buycredits/${userid}`,
+      {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+        method : 'PUT',  
+      }
+    ).then(()=>{
+      setModalOpen(false);
+    })
+  }
+
+  const checkCreditsStatus = ()=>{
+    if(creditsrequested){
+      setModal2Open(true)
+    }else{
+      setModalOpen(true)
+    }
+  }
 
   return (
     <Box style = {{backgroundColor : colors.primary[400] }} >
@@ -136,7 +165,7 @@ const Sidebardiv = ({userid}) => {
                     selected={selected}
                     setSelected={setSelected}
                   />
-                   <button onClick={()=>setModalOpen(true)} className='rounded ms-4 mt-2 py-2 px-4 text-white' style={{backgroundColor : '#8057D7'}}>
+                   <button onClick={()=>checkCreditsStatus()} className='rounded ms-4 mt-2 py-2 px-4 text-white' style={{backgroundColor : '#8057D7'}}>
                   Buy Credits
           </button>
                 </Box>
@@ -166,7 +195,7 @@ const Sidebardiv = ({userid}) => {
               }}
             >
             </div>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
+            <Typography  id="modal-modal-title" variant="h6" component="h2">
               Buy Credits?
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
@@ -187,7 +216,50 @@ const Sidebardiv = ({userid}) => {
                   className="btn "
                   style = {{backgroundColor: colors.grey[100], color: colors.greenAccent[600]}}
                   // data-bs-dismiss="modal"
-                  onClick={()=>setModalOpen(false)}
+                  onClick={()=>buyCredits()}
+                >
+                  Ok
+                </button>
+              </div>
+            </Typography>
+          </Box>
+        </Modal>
+      )}
+
+{modal2Open && (
+        <Modal
+          open={modal2Open}
+          onClose={()=>setModalOpen(false)}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <div
+              className="editModal"
+              style={{
+                height: "30px",
+                width: "30px",
+                position: "absolute",
+                top: 0,
+                right: 0,
+                cursor: "pointer",
+              }}
+            >
+            </div>
+            <Typography  id="modal-modal-title" variant="h6" component="h2">
+              Wait !!
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              <h1>You are already fequested for credits! our team will add your credits</h1>
+              
+
+              <div className="flex justify-end align-items-center mt-4">
+                <button
+                  type="button"
+                  className="btn "
+                  style = {{backgroundColor: colors.grey[100], color: colors.greenAccent[600]}}
+                  // data-bs-dismiss="modal"
+                  onClick={()=>setModal2Open(false)}
                 >
                   Ok
                 </button>

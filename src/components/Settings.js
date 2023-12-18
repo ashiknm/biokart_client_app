@@ -52,7 +52,7 @@ function Settings() {
       </div>
       <div className="flex" style={{ height: "90%" }}>
       <div  style={{ width: "20%" }}>
-      <Sidebardiv userid={userdata.user_id}></Sidebardiv>
+      <Sidebardiv userid={userdata.user_id} creditsrequested={userdata.credits_requested}></Sidebardiv>
       </div>
       <div style={{ width: "80%" }}>
       <Outlet />

@@ -57,8 +57,8 @@ const ProfileSettings =() =>{
             setFullName(response.data.full_name);
             setPiName(response.data.project_incharge_name);
             setEmail(response.data.email);
-            setDepartment(response.data.email);
-            setPhonenumber(response.data.research_department);
+            setDepartment(response.data.research_department);
+            setPhonenumber(response.data.phone);
             setInstitute_organization(response.data.institution_organization);
             setAddress(response.data.address);
             setCountry(response.data.country);

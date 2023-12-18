@@ -243,6 +243,8 @@ const getFilteredHistory = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const handleEditClose = () => setIseditdataModal(false);
+
   const handleprojectDownload = (project_id) =>{
     toast.success("Project Downloaded Successfully "+project_id)
   }
@@ -301,7 +303,7 @@ const getFilteredHistory = () => {
 
   const handleProjectEdit = (project_id) =>{
     setProjectId(project_id);
-    setIsdataAttributeModal(true);
+    setIseditdataModal(true);
   }
 
   const getStatusColor = (status) => {
@@ -478,12 +480,12 @@ const getFilteredHistory = () => {
       {open && (
         <Modal
           open={open}
-          // onClose={handleClose}
+          onClose={handleClose}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
           <Box sx={style}>
-          <div className="editModal" style = {{height: '30px', width : '30px', position : 'absolute', top:0, right: 0, cursor : 'pointer'}}><CloseIcon onClick = {()=>setOpen(false)} /></div>
+          {/* <div className="editModal flex justify-center align-items-center" style = {{height: '30px', width : '30px', position : 'absolute', top:0, right: 0, cursor : 'pointer'}}><CloseIcon onClick = {()=>setOpen(false)} /></div> */}
             <Typography id="modal-modal-title" variant="h6" component="h2">
               Add New Project
             </Typography>
@@ -622,7 +624,7 @@ const getFilteredHistory = () => {
         style={{ marginTop: '16px' }}
       >
         {/* You can replace these MenuItem components with your actual project names */}
-        <MenuItem value="project1">Database 1</MenuItem>
+        <MenuItem defaultChecked value="project1">Database 1</MenuItem>
         <MenuItem value="project2">Database 2</MenuItem>
         <MenuItem value="project3">Database 3</MenuItem>
       </TextField>
@@ -686,14 +688,13 @@ const getFilteredHistory = () => {
 {iseditdataModal && (
         <Modal
           open={iseditdataModal}
-          // onClose={handleClose}
+          onClose={handleEditClose}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
 
           
           <Box sx={style}>
-            <div className="editModal" style = {{height: '30px', width : '30px', position : 'absolute', top:0, right: 0, cursor : 'pointer'}}><CloseIcon onClick = {()=>setIseditdataModal(false)} /></div>
             <Typography id="modal-modal-title" variant="h6" component="h2">
               Update Project Attributes
             </Typography>
@@ -711,7 +712,7 @@ const getFilteredHistory = () => {
         style={{ marginTop: '16px' }}
       >
         {/* You can replace these MenuItem components with your actual project names */}
-        <MenuItem value="project1">Database 1</MenuItem>
+        <MenuItem value="project1" defaultChecked>Database 1</MenuItem>
         <MenuItem value="project2">Database 2</MenuItem>
         <MenuItem value="project3">Database 3</MenuItem>
       </TextField>
@@ -764,6 +765,17 @@ const getFilteredHistory = () => {
 
         </div>
       </div>
+      <input
+        type="file"
+        accept="image/*" // specify the file types allowed, e.g., images
+        multiple
+        onChange={handleFileInputChange}
+        style={{ display: 'none' }}
+        id="fileInput"
+      />
+      <label className="border p-2 bg-slate-400 mt-2" htmlFor="fileInput" style={{ cursor: 'pointer' }}>
+        New Sample
+      </label>
               </div>
         
               

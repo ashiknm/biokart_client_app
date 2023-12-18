@@ -68,7 +68,7 @@ function Topbar({ fullname }) {
     <Box  style = {{backgroundColor : colors.primary[400]}} >
     <Container maxWidth="xl">
       <Toolbar disableGutters>
-        <img alt='logo' src = {(theme.palette.mode === "dark") ?biokartlogo_white:biokartlogo_black} sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} height='40' width = '60' />
+        <img onClick={()=>navigate("/dashboard")} alt='logo' src = {(theme.palette.mode === "dark") ?biokartlogo_white:biokartlogo_black} sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} height='40' width = '60' />
         <Typography
           className="ms-2"
           variant="h4"
@@ -84,6 +84,8 @@ function Topbar({ fullname }) {
             color: colors.grey[100],
             textDecoration: 'none',
           }}
+
+          onClick={()=>navigate("/dashboard")}
 
         >
           BIOKART

@@ -287,13 +287,15 @@ const Profile = () => {
                   </Box>
                 </Box>
             </div>
-            <div className='border-l-2' style={{'width' : '30%', position : 'relative'}}>
-              <div className='flex justify-between p-2 '>
+            <div className='border-l-2' style={{'width' : '30%', height : "100%", position : 'relative'}}>
+              <div className='flex justify-between p-2' style = {{height: "15%"}}>
                 <h1 className='font-semibold'>UID: {userdata.user_id}</h1>
                 <h1 className='font-semibold'>{userdata.institution_organization}</h1>
               </div>
-              <h1 className='font-semibold text-center p-2 mt-3' style={{'fontSize': '30px'}}>{userdata.full_name}</h1>
-              <div className='flex flex-col p-2 mt-2'>
+              <div className='flex justify-center align-items-center' style = {{height: "60%"}}>
+                <h1 className='font-semibold text-center' style={{'fontSize': '30px'}}>{userdata.full_name}</h1>
+              </div>
+              <div className='flex flex-col p-2 mt-2' style = {{height: "25%"}}>
                 <h1 className='font-semibold'>UID: {userdata.user_id}</h1>
                 <h1 className='font-semibold'>{userdata.institution_organization}</h1>
               </div>

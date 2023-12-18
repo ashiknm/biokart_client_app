@@ -38,7 +38,7 @@ box-sizing: border-box;
 .inner:before { 
 content: "YES"; 
 padding-left: 10px; 
-background-color: #060; 
+background-color: #70d8bd; 
 color: #fff; 
 } 
 .inner:after { 
