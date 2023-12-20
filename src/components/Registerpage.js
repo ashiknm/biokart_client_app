@@ -143,6 +143,7 @@ function Registerpage() {
     if (
       !fullName ||
       !email ||
+      !piName ||
       !phonenumber ||
       !institute_organization ||
       !password ||
@@ -285,7 +286,8 @@ function Registerpage() {
                 className="appearance-none  rounded w-full  text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="piname"
                 type="text"
-                placeholder="P.I Name"
+                placeholder="P.I Name *"
+                required
                 value={piName}
                 onChange={(event) => setPiName(event.target.value)}
                 aria-invalid={validPiName ? "false" : "true"}
