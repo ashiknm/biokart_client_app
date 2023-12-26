@@ -16,6 +16,8 @@ import PersistLogin from "./components/PersistLogin";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
 
+import { useSettings } from './context/SettingsContext'
+import { useState, useEffect } from "react";
 
 import { Routes, Route } from "react-router-dom";
 
@@ -31,6 +33,19 @@ if (process.env.NODE_ENV === 'production') {
 function App() {
 
   const [theme, colorMode] = useMode();
+  const { settingsForm, fetchSettingsData } = useSettings();
+
+  
+  useEffect(() => {
+    let isMounted = true;
+    // Fetch settings data when the component mounts
+    isMounted && fetchSettingsData();
+
+    return () => {
+      isMounted = false;
+      // controller.abort();
+  }
+  }, []);
 
 
   return (

@@ -23,6 +23,8 @@ import { tokens } from ".././theme";
 
 import { countries } from "../data/mockdata";
 
+import { useSettings } from '../context/SettingsContext';
+
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9_ -]{3,23}$/;
 const Email_regex = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/;
 const approved_mail = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+@(edu\.in)$/; 
@@ -49,6 +51,8 @@ function Registerpage() {
   const colors = tokens(theme.palette.mode);
   const navigate = useNavigate();
   const [modalOpen, setModalOpen] = useState(false);
+
+  const { settingsForm, fetchSettingsData } = useSettings();
 
   const [approvedMail, setApprovedMail] = useState(false);
 
@@ -90,7 +94,9 @@ function Registerpage() {
 
   useEffect(() => {
     fullNameRef.current.focus();
+    fetchSettingsData();
   }, []);
+  
 
   const getEmailUsername = () => {
     // Using regular expression to extract the username before the @ symbol
@@ -214,32 +220,32 @@ function Registerpage() {
             alt=""
             style={{ width: "100%", display: "block", margin: "20% 0 0 0" }}
           />
-          <h1 className="text-center font-semibold text-white text-4xl">
-            METAGENOME <br /> ANALYSIS
+          <h1 style = {{margin: 'auto'}} className="text-center font-semibold text-white text-4xl">
+           {settingsForm.header1}
           </h1>
           <h1 className="text-center font-semibold text-white text-2xl mt-10">
-            A part of ngsanalysis.com
+          {settingsForm.subtitle1}
           </h1>
           <h1 className="text-center font-semibold text-white text-1xl mt-5">
-            You can reach us via the following contact information <br />
-            Contact Person: Vikram S. <br /> &nbsp; &nbsp; &nbsp; &nbsp; Email
-            ID: vikram@biokart.com
+          {settingsForm.contactHeading} <br />
+            Contact Person: {settingsForm.contactPerson} <br /> &nbsp; &nbsp; &nbsp; &nbsp; Email
+            ID: {settingsForm.emailId}
           </h1>
         </div>
 
         <img
           className=" self-center"
-          src={biokartlogo}
-          alt=""
+          src={settingsForm.lightLogo}
+          alt="noimg"
           style={{ position: "absolute", top: "10%" }}
         />
       </div>
       <div className=" flex  flex-col justify-center w-full md:h-full">
         <h2 className="flex justify-center text-3xl font-bold text-center mt-3 md:mt-5">
-          TARGETED METAGENOME ANALYSIS
+        {settingsForm.pageheader1}
         </h2>
         <h2 className="text-2xl font-bold text-center mb-2 sm:text-1xl">
-          from FASTQ to report
+        {settingsForm.pageSubtitle1}
         </h2>
         <h2 className="text-1xl font-bold text-center  mb-1">
           REGISTRATION FORM
@@ -514,7 +520,7 @@ function Registerpage() {
             onClick={register}
             style={{ backgroundColor: "#24243E" }}
           >
-            Become a Member
+            {settingsForm.registerBtntxt}
           </button>
           <p className="text-center">
             Already a Member?{" "}

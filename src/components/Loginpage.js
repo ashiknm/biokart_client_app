@@ -18,6 +18,8 @@ import useToggle from "../hooks/useToggle";
 import { useTheme } from "@mui/material";
 import { tokens } from ".././theme";
 
+import { useSettings } from '../context/SettingsContext';
+
 const LOGIN_URL = "/login";
 
 function Loginpage() {
@@ -27,6 +29,10 @@ function Loginpage() {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/dashboard";
+
+  const { settingsForm, fetchSettingsData } = useSettings();
+
+  
 
   const errorRef = useRef();
 
@@ -111,21 +117,21 @@ function Loginpage() {
             style={{ width: "100%", display: "block", margin: "20% 0 0 0" }}
           />
           <h1 className="text-center font-semibold text-white text-4xl">
-            METAGENOME <br /> ANALYSIS
+            {settingsForm.header1}
           </h1>
           <h1 className="text-center font-semibold text-white text-2xl mt-10">
-            A part of ngsanalysis.com
+          {settingsForm.subtitle1}
           </h1>
           <h1 className="text-center font-semibold text-white text-1xl mt-5">
-            You can reach us via the following contact information <br />
-            Contact Person: Vikram S. <br /> &nbsp; &nbsp; &nbsp; &nbsp; Email
-            ID: vikram@biokart.com
+          {settingsForm.contactHeading} <br />
+            Contact Person: {settingsForm.contactPerson} <br /> &nbsp; &nbsp; &nbsp; &nbsp; Email
+            ID: {settingsForm.emailId}
           </h1>
         </div>
 
         <img
           className=" self-center"
-          src={biokartlogo}
+          src={settingsForm.lightLogo}
           alt=""
           style={{ position: "absolute", top: "10%" }}
         />
@@ -135,10 +141,10 @@ function Loginpage() {
         style={{ height: "100vh" }}
       >
         <h2 className="flex justify-center text-3xl font-bold text-center mt-3 mb-2">
-          TARGETED METAGENOME ANALYSIS
+        {settingsForm.pageheader1}
         </h2>
         <h2 className="text-2xl font-bold text-center mb-5 ">
-          from FASTQ to report
+        {settingsForm.pageSubtitle1}
         </h2>
         <h2 className="text-1xl font-bold text-center  mb-10">
           LOGIN TO CONTINUE
@@ -190,7 +196,7 @@ function Loginpage() {
               className="border w-full my-5 py-2 text-white"
               style={{ backgroundColor: "#24243E" }}
             >
-              Proceed to my Account
+               {settingsForm.loginBtntxt}
             </button>
           </div>
           <p className="text-center cursor-pointer my-5">
