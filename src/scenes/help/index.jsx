@@ -15,6 +15,8 @@ import { tokens } from "../../theme";
 
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
+import { useSettings } from '../../context/SettingsContext';
+
 function Help() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -22,6 +24,8 @@ function Help() {
   const axiosPrivate = useAxiosPrivate();
   const navigate = useNavigate();
   const location = useLocation();
+
+  const { settingsForm, fetchSettingsData } = useSettings();
 
   const [userId, setUserId] = useState(localStorage.getItem("userId"));
   const [subject, setSubject] = useState("");
@@ -73,29 +77,27 @@ function Help() {
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    // if (file) {
-    //   // Set the selected image file to the state
-    //   setSelectedImage(URL.createObjectURL(file));
-    // }
-    // const file = event.target.files[0];
-
-    // // Do any additional validation or processing here if needed
-
     setSelectedImage(file);
   };
 
+
   const contactus = async ()=>{
+
+    const formData = new FormData();
+    formData.append('user_id', userId);
+    formData.append('user_name', userdata.username);
+    formData.append('subject', subject);
+    formData.append('message', message);
+
+    if (selectedImage) {
+      formData.append('upload_screenshot', selectedImage);
+    }
+
     const response = await axiosPrivate.post(
       CONTACT_URL,
-      JSON.stringify({
-        user_id: userId,
-        user_name: userdata.username,
-        subject: subject,
-        message: message,
-        upload_screenshot: selectedImage
-      }),
+      formData,
       {
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "multipart/form-data" },
         withCredentials: true,
         method : 'POST',
       }
@@ -124,11 +126,12 @@ function Help() {
           <h1 className="h5 mt-4 "  >Corporate office:</h1>
           <div className="ps-3">
           <p style={{ width: "60%", fontSize : '14px' }}>
-            BioKart Lab, 1st Floor, 401-4AB Cross, 1st Main, Kasturi Nagar, East
-            of NGEF, Bengaluru – 560043, Karnataka, India.
+            {settingsForm.addressLine1}<br/>
+            {settingsForm.addressLine2}
+
           </p>
-          <p className="mt-3" style={{fontSize : '14px' }}>Ph. No. +91 9008491839</p>
-          <p style={{fontSize : '14px' }}>email id. vikram@biokart.com</p>
+          <p className="mt-3" style={{fontSize : '14px' }}>Ph. No. {settingsForm.phoneNumber}</p>
+          <p style={{fontSize : '14px' }}>email id. {settingsForm.emailId}</p>
           </div>
         </div>
        
