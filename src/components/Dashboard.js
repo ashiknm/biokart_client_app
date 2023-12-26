@@ -88,7 +88,7 @@ function Dashboard() {
   const [alert2, setAlert2] = React.useState(false);
   const [alert3, setAlert3] = React.useState(false);
   const [projectname, setProjectname] = React.useState('');
-  const [databasename, setDatabasename] = React.useState('');
+  const [databasename, setDatabasename] = React.useState('project1');
   const [googleLink, setGoogleLink] = React.useState('');
   const [search, setSearch] = React.useState('');
   const [projectId, setProjectId] = React.useState('');
@@ -720,7 +720,7 @@ const getFilteredHistory = () => {
         label="No.of Cores"
         variant="outlined"
         type="text"
-        value={60}
+        value={userdata.no_of_cores}
         disabled
         style={{ marginTop: '16px' }}
       />
@@ -728,7 +728,7 @@ const getFilteredHistory = () => {
         label="Conidence"
         variant="outlined"
         type="text"
-        value={0.5}
+        value={userdata.confidence}
         disabled
         style={{ marginTop: '16px' }}
       />

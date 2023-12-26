@@ -73,10 +73,15 @@ function Help() {
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    if (file) {
-      // Set the selected image file to the state
-      setSelectedImage(URL.createObjectURL(file));
-    }
+    // if (file) {
+    //   // Set the selected image file to the state
+    //   setSelectedImage(URL.createObjectURL(file));
+    // }
+    // const file = event.target.files[0];
+
+    // // Do any additional validation or processing here if needed
+
+    setSelectedImage(file);
   };
 
   const contactus = async ()=>{
